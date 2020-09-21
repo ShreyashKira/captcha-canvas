@@ -159,7 +159,8 @@ class CaptchaGenerator {
      * 
      * fs.writeFileSync("image.png", buffer)
      */
-    async generate() {
+    async generate(options = {}) {
+        options = merge({distorted: false, buffer: true}, options);
         /*Create canvas element from createCanvas function*/
         const canvas = createCanvas(this.width, this.height);
         const ctx = canvas.getContext("2d");
@@ -216,8 +217,13 @@ class CaptchaGenerator {
                 ctx.fillText(this.captcha.text[n], coordinates[n][0], coordinates[n][1]);
             }
         }
+        /*Distort image*/
+        if(options.distorted) {
+            
+        }
         /*Return buffer*/
-        return canvas.toBuffer();
+        if(options.buffer) return canvas.toBuffer();
+        return canvas;
     }
 }
 
