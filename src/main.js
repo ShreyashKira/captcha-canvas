@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-const crypto = require('crypto');
-const { merge } = require("./util");
-=======
 const { randomBytes } = require('crypto');
-const merge = require("deepmerge");
->>>>>>> origin/master
+const { merge } = require("./util");
 const { 
     defaultCaptchaOptions, 
     defaultTraceOptions, 
