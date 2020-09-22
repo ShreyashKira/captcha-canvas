@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 const crypto = require('crypto');
 const { merge } = require("./util");
+=======
+const { randomBytes } = require('crypto');
+const merge = require("deepmerge");
+>>>>>>> origin/master
 const { 
     defaultCaptchaOptions, 
     defaultTraceOptions, 
@@ -9,6 +14,7 @@ const {
     SetCaptchaOptions,
 } = require("./constants");
 const { createCanvas, loadImage, Image } = require("canvas");
+const { runInThisContext } = require('vm');
 function getRandom(n) {
     return Math.floor(Math.random()*(n - 60)) + 30
 }
@@ -60,7 +66,7 @@ class CaptchaGenerator {
          * @type {string}
          * @private
          */
-        this.captcha.text = crypto.randomBytes(32).toString("hex").toUpperCase().replace(/[^a-z]/gi, "")
+        this.captcha.text = randomBytes(32).toString("hex").toUpperCase().replace(/[^a-z]/gi, "")
         .substr(0, this.captcha.characters);
     }
     /**
@@ -125,6 +131,12 @@ class CaptchaGenerator {
     setCaptcha(options) {
         this.captcha = merge(this.captcha, options);
         if(options.text) this.captcha.characters = options.text.length
+        if(!options.text && options.characters) {
+            this.captcha.text = randomBytes(32)
+            .toString("hex").toUpperCase()
+            .replace(/[^a-z]/gi, "")
+            .substr(0, options.characters);
+        }
         return this;
     }
     /**
@@ -196,7 +208,7 @@ class CaptchaGenerator {
         /*Add decoy text in captcha*/
         if(this.decoy.opacity) {
             const decoyTextCount = Math.floor(this.height*this.width/10000);
-            const decoyText = crypto.randomBytes(decoyTextCount).toString('hex').split('');
+            const decoyText = randomBytes(decoyTextCount).toString('hex').split('');
             ctx.font = `${this.decoy.size}px ${this.decoy.font}`;
             ctx.globalAlpha = this.decoy.opacity;
             ctx.fillStyle = this.decoy.color;
@@ -277,7 +289,7 @@ class CaptchaGenerator {
         /*Add decoy text in captcha*/
         if(this.decoy.opacity) {
             const decoyTextCount = Math.floor(this.height*this.width/10000);
-            const decoyText = crypto.randomBytes(decoyTextCount).toString('hex').split('');
+            const decoyText = randomBytes(decoyTextCount).toString('hex').split('');
             ctx.font = `${this.decoy.size}px ${this.decoy.font}`;
             ctx.globalAlpha = this.decoy.opacity;
             ctx.fillStyle = this.decoy.color;
