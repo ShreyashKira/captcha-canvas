@@ -1,3 +1,4 @@
+/*
 const { CaptchaGenerator, resolveImage } = require("./");
 const fs = require('fs');
 (async() => {
@@ -6,3 +7,10 @@ const fs = require('fs');
     
     fs.writeFileSync("assets/captcha/default.png", captcha)
 })();
+*/
+
+const { merge } = require("./src/util");
+
+const object = merge({a: "first", b: "second"}, {b: "third", c: "fourth"});
+
+console.log(object)

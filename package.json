@@ -7,8 +7,7 @@
     "docsgen": "jsdoc --configure .jsdoc.json --verbose",
     "example": "node examples/example.js",
     "start": "node index.js",
-    "test": "node test.js",
-    "typetest": ""
+    "test": "node test.js"
   },
   "repository": {
     "type": "git",
@@ -26,16 +25,15 @@
   "bugs": {
     "url": "https://github.com/Shashank3736/captcha-canvas/issues"
   },
-  "homepage": "https://github.com/Shashank3736/captcha-canvas#readme",
-  "dependencies": {
-    "deepmerge": "^4.2.2",
-    "canvas": "*"
-  },
+  "homepage": "https:captcha-canvas.js.org",
   "devDependencies": {
     "jsdoc": "^3.6.5",
     "jsdoc-skyceil": "^1.0.5",
     "typescript": "^4.0.2"
   },
+	"peerDependencies": {
+		"canvas": "*"
+	},
   "directories": {
     "doc": "docs",
     "example": "examples"
