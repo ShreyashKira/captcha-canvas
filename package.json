@@ -31,9 +31,9 @@
     "jsdoc-skyceil": "^1.0.5",
     "typescript": "^4.0.2"
   },
-	"peerDependencies": {
-		"canvas": "*"
-	},
+  "peerDependencies": {
+    "canvas": "*"
+  },
   "directories": {
     "doc": "docs",
     "example": "examples"
